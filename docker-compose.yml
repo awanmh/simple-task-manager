@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # 1. Database Service
+  db:
+    image: postgres:15-alpine
+    container_name: task_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taskdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Agar data awet (persist)
+      # --- Tambahan: init.sql untuk inisialisasi schema/tabel ---
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432" # Akses dari luar container
+    networks:
+      - task_network
+
+  # 2. Backend Service (Golang)
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: task_backend
+    ports:
+      - "8080:8080"
+    environment:
+      # Hostnya bukan 'localhost', tapi 'db' (nama service di atas)
+      - DB_URL=postgres://postgres:password@db:5432/taskdb?sslmode=disable
+      - JWT_SECRET=rahasia_super_aman_docker
+      - PORT=8080
+    depends_on:
+      - db # Tunggu db jalan dulu
+    networks:
+      - task_network
+
+  # 3. Frontend Service (React + Nginx)
+  frontend:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: task_frontend
+    ports:
+      - "3000:80" # Kita akses di browser via localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - task_network
+
+volumes:
+  postgres_data:
+
+networks:
+  task_network:
+    driver: bridge

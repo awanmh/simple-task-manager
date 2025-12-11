@@ -1,0 +1,15 @@
+simple-task-manager/
+├── cmd/
+│   └── main.go       # Titik masuk aplikasi
+├── internal/
+│   ├── core/         # Layer Inti (Domain)
+│   │   ├── domain/   # Entitas, Value Objects, Kontrak Interface (Repository)
+│   │   └── usecase/  # Logika Bisnis Inti (Interactors/Services)
+│   ├── infra/        # Layer Infrastruktur (Adapters)
+│   │   ├── repository/  # Implementasi Repository (DB, pgx)
+│   │   └── delivery/ # Implementasi Server & Handler (Gin)
+│   ├── db/
+│   │   └── migrations/ # File migrasi database (golang-migrate)
+├── pkg/              # Pustaka atau Helper Umum (JWT, config, dll.)
+├── go.mod
+└── go.sum

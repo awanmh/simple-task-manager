@@ -1,0 +1,4 @@
+.git
+.env
+tmp
+internal/db/migrations/*.down.sql

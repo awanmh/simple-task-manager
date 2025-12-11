@@ -1,0 +1,10 @@
+with-expecter: true
+
+packages:
+  simple-task-manager/internal/core/domain:
+    config:
+      dir: internal/core/usecase/mocks
+      outpkg: mocks
+    interfaces:
+      UserRepository: {}
+      TaskRepository: {}

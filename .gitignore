@@ -1,0 +1,88 @@
+# ------------------------------------------------------------------------------
+# 1. GENERAL & OS FILES
+# ------------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# ------------------------------------------------------------------------------
+# 2. EDITOR & IDE SETTINGS
+# ------------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# 3. ENVIRONMENT VARIABLES (SENSITIVE DATA)
+# ------------------------------------------------------------------------------
+# JANGAN PERNAH PUSH FILE INI!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ------------------------------------------------------------------------------
+# 4. GOLANG (BACKEND)
+# ------------------------------------------------------------------------------
+# Binary hasil build (Windows/Mac/Linux)
+main
+main.exe
+app
+app.exe
+simple-task-manager
+simple-task-manager.exe
+
+# Dependency vendor (opsional, modern Go jarang commit ini)
+vendor/
+
+# Test binary & coverage
+*.test
+*.out
+coverage.txt
+profile.out
+
+# Go workspace
+go.work
+go.work.sum
+
+# ------------------------------------------------------------------------------
+# 5. NODE.JS & REACT VITE (FRONTEND - CLIENT FOLDER)
+# ------------------------------------------------------------------------------
+# Folder dependency library (Sangat Berat!)
+client/node_modules/
+node_modules/
+
+# Hasil build produksi frontend
+client/dist/
+client/build/
+dist/
+build/
+
+# Logs npm/yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing coverage frontend
+client/coverage/
+
+# ------------------------------------------------------------------------------
+# 6. DOCKER & DATABASE
+# ------------------------------------------------------------------------------
+# Jika Anda pernah mount volume DB ke folder lokal (bukan named volume)
+postgres_data/
+pgdata/
+mysql_data/
+
+# ------------------------------------------------------------------------------
+# 7. MOCKERY (TESTING)
+# ------------------------------------------------------------------------------
+# Biasanya mock dicommit, tapi jika ingin generate ulang di CI/CD, bisa di-ignore.
+# Untuk saat ini kita KEEP (jangan di-ignore) agar orang lain bisa langsung test.
+# internal/core/usecase/mocks/
