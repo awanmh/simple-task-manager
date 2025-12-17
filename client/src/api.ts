@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080', // URL Backend Go
+  baseURL: 'http://localhost:8080',
 });
 
-// Interceptor: Setiap request keluar, tempelkan Token jika ada
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {

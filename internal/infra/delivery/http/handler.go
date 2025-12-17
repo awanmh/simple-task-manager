@@ -1,7 +1,7 @@
 package http
 
 import (
-    "fmt" // untuk debugging
+    "fmt"
     "net/http"
     "strconv"
 
@@ -11,9 +11,7 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-//
 // --- User Handler ---
-//
 
 type UserHandler struct {
     UserUseCase *usecase.UserUsecase

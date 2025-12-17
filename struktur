@@ -1,15 +1,80 @@
 simple-task-manager/
+├── client/
+│   ├── node_modules/
+│   ├── public/
+│   │   └──vite.svg
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   ├── api.ts
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   ├── main.css
+│   │   └── types.ts
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── nginx.conf
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── README.md
+│   ├── tailwind.config.js
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
 ├── cmd/
 │   └── main.go       # Titik masuk aplikasi
+├── docs/
+│   ├── docs.go
+│   ├── swagger.json  # Dokumentasi API (Swagger)
+│   └── swagger.yaml  # Dokumentasi API (Swagger)
 ├── internal/
 │   ├── core/         # Layer Inti (Domain)
 │   │   ├── domain/   # Entitas, Value Objects, Kontrak Interface (Repository)
+│   │   │   ├── error.go
+│   │   │   ├── task.go
+│   │   │   └── user.go
 │   │   └── usecase/  # Logika Bisnis Inti (Interactors/Services)
+│   │       ├── mocks/  # Mock untuk pengujian unit (mockery)
+│   │       │   ├── error.go
+│   │       │   ├── TaskRepository.go
+│   │       │   ├── user_repository.go
+│   │       │   └── UserRepository.go
+│   │       ├── task_usecase_test.go
+│   │       ├── task_usecase.go
+│   │       ├── user_usecase_test.go
+│   │       └── user_usecase.go
 │   ├── infra/        # Layer Infrastruktur (Adapters)
+│   │   ├── delivery/ # Implementasi Server & Handler (Gin)
+│   │   │   ├── http/
+│   │   │   │   └── handler.go
+│   │   │   └── middleware/
+│   │   │       └── auth.go
 │   │   ├── repository/  # Implementasi Repository (DB, pgx)
-│   │   └── delivery/ # Implementasi Server & Handler (Gin)
+│   │   │       ├── task.go
+│   │   │       └── user.go
+│   │   └── scheduler/  # Implementasi terjadwal (cron)
+│   │   │       └── task_scheduler.go
 │   ├── db/
 │   │   └── migrations/ # File migrasi database (golang-migrate)
-├── pkg/              # Pustaka atau Helper Umum (JWT, config, dll.)
+│   │       └──000001_init_schema.up.sql
+├── node_modules/
+├── pkg/
+│   └── util/
+│       ├── password.go
+│       └── token.go
+├── .dockerignore
+├── .gitignore
+├── .mockery.yaml
+├── docker-compose.yml
+├── Dockerfile
 ├── go.mod
+├── go.mod
+├── init.sql
+├── package-lock.json
+├── package.json
+├── README.md
 └── go.sum

@@ -95,6 +95,15 @@ cd client
 npm install
 npm run dev
 ```
+### 4. Docker Setup
+
+```bash
+docker-compose build
+```
+
+```bash
+docker-compose up
+```
 
 -----
 
@@ -102,20 +111,41 @@ npm run dev
 
 ```
 simple-task-manager/
+├── client/
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/
+│   │   └── assets/
 ├── cmd/
-│   └── main.go           # Application Entry Point & Wiring
+├── docs/
 ├── internal/
 │   ├── core/
-│   │   ├── domain/       # Entities & Repository Interfaces (Pure Go)
-│   │   └── usecase/      # Business Logic (Unit Tested Here)
+│   │   ├── domain/
+│   │   └── usecase/
+│   │       └── mocks/
 │   ├── infra/
-│   │   ├── repository/   # Database Implementation (Postgres/pgx)
-│   │   ├── delivery/     # HTTP Handlers (Gin)
-│   │   └── scheduler/    # Cron Jobs Logic
-│   └── db/               # Migration Files
-├── client/               # React TypeScript Application
-├── docker-compose.yml    # Orchestration
-└── Dockerfile            # Multi-stage build definition
+│   │   ├── delivery/
+│   │   │   ├── http/
+│   │   │   └── middleware/
+│   │   ├── repository/ 
+│   │   └── scheduler/
+│   ├── db/
+│   │   └── migrations/
+├── node_modules/
+├── pkg/
+│   └── util/
+├── .dockerignore
+├── .gitignore
+├── .mockery.yaml
+├── docker-compose.yml
+├── Dockerfile
+├── go.mod
+├── go.mod
+├── init.sql
+├── package-lock.json
+├── package.json
+├── README.md
+└── go.sum
 ```
 
 -----

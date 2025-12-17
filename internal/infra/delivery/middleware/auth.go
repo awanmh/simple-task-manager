@@ -18,7 +18,6 @@ func AuthMiddleware(secretKey string) gin.HandlerFunc {
 			return
 		}
 
-		// Format harus "Bearer <token>"
 		parts := strings.Split(authHeader, " ")
 		if len(parts) != 2 || parts[0] != "Bearer" {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid authorization header format"})
@@ -46,9 +45,7 @@ func AuthMiddleware(secretKey string) gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
-		// Simpan user_id ke context agar bisa diakses di handler
-		// Pastikan tipe datanya dikonversi ke int64 dengan benar
+		
 		userID := int64(claims["user_id"].(float64))
 		c.Set("user_id", userID)
 
