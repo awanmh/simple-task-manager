@@ -90,7 +90,6 @@ func (u *TaskUsecase) Delete(c context.Context, id int64, userID int64) error {
 
 // --- SUBTASK METHODS ---
 
-// AddSubtask menambahkan subtask baru ke sebuah task
 func (u *TaskUsecase) AddSubtask(c context.Context, taskID int64, title string) error {
     ctx, cancel := context.WithTimeout(c, u.contextTimeout)
     defer cancel()
@@ -103,7 +102,6 @@ func (u *TaskUsecase) AddSubtask(c context.Context, taskID int64, title string) 
     return u.taskRepo.CreateSubtask(ctx, sub)
 }
 
-// ToggleSubtask mengubah status selesai/tidak selesai subtask
 func (u *TaskUsecase) ToggleSubtask(c context.Context, id int64) error {
     ctx, cancel := context.WithTimeout(c, u.contextTimeout)
     defer cancel()
@@ -111,7 +109,6 @@ func (u *TaskUsecase) ToggleSubtask(c context.Context, id int64) error {
     return u.taskRepo.ToggleSubtask(ctx, id)
 }
 
-// DeleteSubtask menghapus subtask berdasarkan ID
 func (u *TaskUsecase) DeleteSubtask(c context.Context, id int64) error {
     ctx, cancel := context.WithTimeout(c, u.contextTimeout)
     defer cancel()

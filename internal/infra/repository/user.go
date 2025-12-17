@@ -14,7 +14,6 @@ type PostgresUserRepository struct {
 	db *pgxpool.Pool
 }
 
-// NewUserRepository adalah factory function untuk inisialisasi repository
 func NewUserRepository(db *pgxpool.Pool) domain.UserRepository {
 	return &PostgresUserRepository{db: db}
 }
@@ -26,7 +25,6 @@ func (r *PostgresUserRepository) Create(ctx context.Context, user *domain.User) 
 		RETURNING id
 	`
 
-	// Kita menggunakan QueryRow karena kita mengharapkan return ID dari database
 	err := r.db.QueryRow(ctx, query, 
 		user.Name, 
 		user.Email, 
@@ -57,7 +55,7 @@ func (r *PostgresUserRepository) GetByEmail(ctx context.Context, email string) (
 
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
-			return nil, nil // User tidak ditemukan, return nil tanpa error sistem
+			return nil, nil
 		}
 		return nil, err
 	}

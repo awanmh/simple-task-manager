@@ -112,7 +112,7 @@ func (r *PostgresTaskRepository) Fetch(ctx context.Context, userID int64) ([]dom
             &t.ID, &t.UserID, &t.Title, &t.Description, &t.Status,
             &t.Priority, &t.Labels, &t.ReminderTime,
             &t.RecurrencePattern,
-            &t.NextRun, // NextRun tipenya *time.Time, aman menerima NULL
+            &t.NextRun,
             &t.CreatedAt, &t.UpdatedAt,
             &t.Subtasks,
         )

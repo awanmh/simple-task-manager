@@ -5,8 +5,6 @@ import (
     "simple-task-manager/internal/core/domain"
 )
 
-// TaskRepositoryMock adalah implementasi manual dari domain.TaskRepository
-// dengan function field agar fleksibel di unit test.
 type TaskRepositoryMock struct {
     CreateFn        func(ctx context.Context, task *domain.Task) error
     FetchFn         func(ctx context.Context, userID int64) ([]domain.Task, error)

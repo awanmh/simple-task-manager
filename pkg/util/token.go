@@ -15,5 +15,3 @@ func CreateAccessToken(userID int64, secretKey string, duration time.Duration) (
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(secretKey))
 }
-
-// Catatan: Fungsi validasi token akan kita pakai nanti di Middleware.

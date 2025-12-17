@@ -30,6 +30,6 @@ func TestCreateTask(t *testing.T) {
 		err := u.Create(context.Background(), task)
 
 		assert.NoError(t, err)
-		assert.Equal(t, "pending", task.Status) // Default status harus pending
+		assert.Equal(t, "pending", task.Status)
 	})
 }

@@ -10,11 +10,10 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: taskdb
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Agar data awet (persist)
-      # --- Tambahan: init.sql untuk inisialisasi schema/tabel ---
+      - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "5432:5432" # Akses dari luar container
+      - "5432:5432"
     networks:
       - task_network
 
@@ -27,9 +26,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # Hostnya bukan 'localhost', tapi 'db' (nama service di atas)
       - DB_URL=postgres://postgres:password@db:5432/taskdb?sslmode=disable
-      - JWT_SECRET=rahasia_super_aman_docker
+      - JWT_SECRET=envjenvnskfwi9859finfwliunfiwnfwiuf
       - PORT=8080
     depends_on:
       - db # Tunggu db jalan dulu
@@ -43,7 +41,7 @@ services:
       dockerfile: Dockerfile
     container_name: task_frontend
     ports:
-      - "3000:80" # Kita akses di browser via localhost:3000
+      - "3000:80"
     depends_on:
       - backend
     networks:
